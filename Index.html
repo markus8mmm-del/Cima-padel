@@ -690,7 +690,7 @@ async function getHist(){
         try{localStorage.setItem('cima-hist',JSON.stringify(h.slice(0,50)));}catch(e){}
         return h;
       }
-      try{return json.parse(localstorage.getitem('cima-hist')||'[]');}catch(e){return[];}
+      return [];
     } else {
       const errText=await resp.text();
       console.error('getHist HTTP error:',resp.status,errText);
@@ -699,7 +699,7 @@ async function getHist(){
     console.error('getHist fetch error:',err);
   }
   // Fallback to localStorage
-  try{return JSON.parse(localStorage.getItem('cima-hist')||'[]');}catch(e){try{return json.parse(localstorage.getitem('cima-hist')||'[]');}catch(e){return[];}}
+  try{return JSON.parse(localStorage.getItem('cima-hist')||'[]');}catch(e){return [];}
 }
 function buildRanking(hist){
   const P={};
