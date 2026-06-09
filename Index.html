@@ -690,7 +690,7 @@ async function getHist(){
         try{localStorage.setItem('cima-hist',JSON.stringify(h.slice(0,50)));}catch(e){}
         return h;
       }
-      return [];
+      try{return json.parse(localstorage.getitem('cima-hist')||'[]');}catch(e){return[];}
     } else {
       const errText=await resp.text();
       console.error('getHist HTTP error:',resp.status,errText);
